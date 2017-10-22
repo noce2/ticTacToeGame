@@ -110,12 +110,12 @@ export class TicTacToeGame {
 
     /** creates current grid */
     private createGrid(player1: User, player2: User) {
-        const moves: number[] = [];
+        const moves: string[] = [];
         for (const each of this.player1.showUserMoves()) {
-            moves[each - 1] = each;
+            moves[each - 1] = this.player1.characterType;
         }
         for (const each of this.player2.showUserMoves()) {
-            moves[each - 1] = each;
+            moves[each - 1] = this.player2.characterType;
         }
         return moves;
     }
