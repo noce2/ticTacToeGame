@@ -97,25 +97,25 @@ class TicTacToeGame {
         this.requestUserMove("player1")
             .then((answer) => this.player1.addUserMove(answer))
             .then(() => {
-            if (!this.isGridFull() ||
-                !this.winningMoves(this.player1.userMoves) ||
-                !this.winningMoves(this.player2.userMoves)) {
-                return null;
+            if (this.isGridFull() ||
+                this.winningMoves(this.player1.userMoves) ||
+                this.winningMoves(this.player2.userMoves)) {
+                return this.gameOver();
             }
             else {
-                return this.gameOver();
+                return this.printGrid();
             }
         })
             .then((answer) => this.requestUserMove("player2"))
             .then((answer) => this.player2.addUserMove(answer))
             .then(() => {
-            if (!this.isGridFull() ||
-                !this.winningMoves(this.player1.userMoves) ||
-                !this.winningMoves(this.player2.userMoves)) {
-                return null;
+            if (this.isGridFull() ||
+                this.winningMoves(this.player1.userMoves) ||
+                this.winningMoves(this.player2.userMoves)) {
+                return this.gameOver();
             }
             else {
-                return this.gameOver();
+                return this.printGrid();
             }
         })
             .then(() => this.playGame());
