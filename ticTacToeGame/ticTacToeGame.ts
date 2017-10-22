@@ -104,7 +104,17 @@ export class TicTacToeGame {
             this.requestUserMove("player1")
             .then((answer) => this.player1.addUserMove(answer))
             .then((answer) => this.requestUserMove("player2"))
-            .then((answer) => this.player2.addUserMove(answer));
+    public gameOver() {
+        if (this.winningMoves(this.player1.userMoves)){
+            console.log(`${this.player1.characterType} is the winner`);
+            process.exit(0);
+        } else if (this.winningMoves(this.player2.userMoves)) {
+            console.log(`${this.player2.characterType} is the winner`);
+            process.exit(0);
+        } else {
+            console.log("the grid is full");
+            this.printGrid();
+            process.exit(0);
         }
     }
     /** requests the specific user move and returns a promise containing the value */
