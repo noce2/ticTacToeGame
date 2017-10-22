@@ -31,7 +31,7 @@ export class TicTacToeGame {
 
     /** prints current grid status */
     public printGrid() {
-        const moves: number[] = this.createGrid(this.player1, this.player2);
+        const moves: string[] = this.createGrid(this.player1, this.player2);
         return console.log(`
             ${moves[0] || 1} | ${moves[1] || 2} | ${moves[2] || 3} \n
             ${moves[3] || 4} | ${moves[4] || 5} | ${moves[5] || 6} \n
