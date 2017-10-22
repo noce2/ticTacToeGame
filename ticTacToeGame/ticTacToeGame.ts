@@ -95,6 +95,18 @@ export class TicTacToeGame {
         return false;
     }
 
+    /** requests the specific user move and returns a promise containing the value */
+    private requestUserMove(playerName: string) {
+        return this.sendQuestion(`${playerName}, please enter your move`, (answer) => {
+            if ((/[1-9]/).test(answer) && answer.length === 1) {
+                return Number(answer);
+            } else {
+                console.log(`${playerName}, please enter your move again.\
+                \n It must be between 1 and 9.`);
+                return this.requestUserMove(playerName);
+            }
+        });
+    }
     /** generic factory for a question and response callback  */
     private sendQuestion(inputQuestion: string, filterLogic: (answer: string) => any) {
         // wrapping the readline interface and question method in a promise
