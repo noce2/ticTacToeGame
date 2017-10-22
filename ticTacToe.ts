@@ -5,7 +5,8 @@ function main() {
     const game = new TicTacToeGame();
     game.welcomeMessage();
     game.initialisePlayers()
-    .then(() => game.printGrid());
+    .then(() => game.printGrid())
+    .then(() => game.playGame());
 }
 
 main();
