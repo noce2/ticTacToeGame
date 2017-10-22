@@ -84,8 +84,9 @@ class TicTacToeGame {
         }
         return moves;
     }
-    fullGrid() {
-        if (this.player1.noOfMoves + this.player2.noOfMoves < 9) {
+    /** returns boolean indicating whether grid is full or not */
+    isGridFull() {
+        if (this.player1.noOfMoves + this.player2.noOfMoves < this.maxNoOfMoves) {
             return false;
         }
         return true;

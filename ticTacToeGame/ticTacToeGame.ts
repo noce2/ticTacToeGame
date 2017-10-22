@@ -92,6 +92,7 @@ export class TicTacToeGame {
 
     /** returns boolean indicating whether grid is full or not */
     private isGridFull() {
+        if (this.player1.noOfMoves + this.player2.noOfMoves < this.maxNoOfMoves) {
             return false;
         }
         return true;
