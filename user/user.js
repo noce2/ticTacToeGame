@@ -10,7 +10,11 @@ class User {
     get characterType() {
         return this.userCharacterType;
     }
-    /** returns whether user is X or O */
+    /** returns a set of user moves */
+    get userMoves() {
+        return this.storedUserMoves;
+    }
+    /** returns an iterablet of user moves */
     showUserMoves() {
         return this.storedUserMoves.values();
     }
