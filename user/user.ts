@@ -1,3 +1,4 @@
+/** Class defining the user and their abilities */
 export class User {
     private userCharacterType: string;
     private storedUserMoves: Set<number>;

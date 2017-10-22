@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/** Class defining the user and their abilities */
 class User {
     constructor(characterType) {
         this.userCharacterType = characterType.toUpperCase();
