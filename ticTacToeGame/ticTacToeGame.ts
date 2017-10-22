@@ -96,7 +96,7 @@ export class TicTacToeGame {
     }
 
     /** generic factory for a question and response callback  */
-    private sendQuestion(inputQuestion: string, filterLogic: (answer: string) => void) {
+    private sendQuestion(inputQuestion: string, filterLogic: (answer: string) => any) {
         // wrapping the readline interface and question method in a promise
         return this.promiseQuestion(inputQuestion).then(filterLogic);
     }
