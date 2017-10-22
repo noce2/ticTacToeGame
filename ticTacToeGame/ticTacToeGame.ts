@@ -97,13 +97,33 @@ export class TicTacToeGame {
 
     /** starts game and ends when there is a winner or full grid */
     public playGame() {
-        while (!this.isGridFull() ||
-        !this.winningMoves(this.player1.userMoves) ||
-        !this.winningMoves(this.player2.userMoves)) {
-            // keep playing the game
-            this.requestUserMove("player1")
-            .then((answer) => this.player1.addUserMove(answer))
-            .then((answer) => this.requestUserMove("player2"))
+        // keep playing the game
+        this.requestUserMove("player1")
+        .then((answer) => this.player1.addUserMove(answer))
+        .then(() => {
+            if (!this.isGridFull() ||
+            !this.winningMoves(this.player1.userMoves) ||
+            !this.winningMoves(this.player2.userMoves)) {
+                return null;
+            } else {
+                return this.gameOver();
+            }
+        })
+        .then((answer) => this.requestUserMove("player2"))
+        .then((answer) => this.player2.addUserMove(answer))
+        .then(() => {
+            if (!this.isGridFull() ||
+            !this.winningMoves(this.player1.userMoves) ||
+            !this.winningMoves(this.player2.userMoves)) {
+                return null;
+            } else {
+                return this.gameOver();
+            }
+        })
+        .then(() => this.playGame());
+
+    }
+
     public gameOver() {
         if (this.winningMoves(this.player1.userMoves)){
             console.log(`${this.player1.characterType} is the winner`);
