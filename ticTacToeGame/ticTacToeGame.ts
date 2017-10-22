@@ -72,10 +72,26 @@ export class TicTacToeGame {
         return true;
     }
 
-    /** returns boolean indicating whether an array of moves create a winning combo */
-    public winningMoves(playerMoves: number[]) {
-        const firstMove = playerMoves[0];
-        const possibleSubsets = this.wins[firstMove];
+    /** returns boolean indicating whether a set of moves create a winning combo */
+    public winningMoves(playerMoves: Set<number>) {
+        let testResult: Array<Set<number>>;
+        if (playerMoves.size > 1) {
+            const firstMove = Array.from(playerMoves)[0];
+            const possibleSubsets: Array<Set<number>> = this.wins[firstMove];
+            // the below test
+            testResult = possibleSubsets.filter((eachSet) => {
+                for (let x of eachSet) {
+                    if (!playerMoves.has(x)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+            if (testResult.length >= 1) {
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
@@ -94,15 +110,13 @@ export class TicTacToeGame {
 
     /** creates current grid */
     private createGrid(player1: User, player2: User) {
-        let moves: number[] = [];
-        for (let each of this.player1.showUserMoves()) {
+        const moves: number[] = [];
+        for (const each of this.player1.showUserMoves()) {
             moves[each - 1] = each;
         }
-        for (let each of this.player2.showUserMoves()) {
+        for (const each of this.player2.showUserMoves()) {
             moves[each - 1] = each;
         }
         return moves;
     }
-
-
 }
