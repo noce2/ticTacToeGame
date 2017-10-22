@@ -91,6 +91,31 @@ class TicTacToeGame {
         }
         return false;
     }
+    /** starts game and ends when there is a winner or full grid */
+    playGame() {
+        while (!this.isGridFull() ||
+            !this.winningMoves(this.player1.userMoves) ||
+            !this.winningMoves(this.player2.userMoves)) {
+            // keep playing the game
+            this.requestUserMove("player1")
+                .then((answer) => this.player1.addUserMove(answer))
+                .then((answer) => this.requestUserMove("player2"))
+                .then((answer) => this.player2.addUserMove(answer));
+        }
+    }
+    /** requests the specific user move and returns a promise containing the value */
+    requestUserMove(playerName) {
+        return this.sendQuestion(`${playerName}, please enter your move`, (answer) => {
+            if ((/[1-9]/).test(answer) && answer.length === 1) {
+                return Number(answer);
+            }
+            else {
+                console.log(`${playerName}, please enter your move again.\
+                \n It must be between 1 and 9.`);
+                return this.requestUserMove(playerName);
+            }
+        });
+    }
     /** generic factory for a question and response callback  */
     sendQuestion(inputQuestion, filterLogic) {
         // wrapping the readline interface and question method in a promise
@@ -106,10 +131,10 @@ class TicTacToeGame {
     createGrid(player1, player2) {
         const moves = [];
         for (const each of this.player1.showUserMoves()) {
-            moves[each - 1] = each;
+            moves[each - 1] = this.player1.characterType;
         }
         for (const each of this.player2.showUserMoves()) {
-            moves[each - 1] = each;
+            moves[each - 1] = this.player2.characterType;
         }
         return moves;
     }
