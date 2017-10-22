@@ -64,6 +64,14 @@ export class TicTacToeGame {
                 }
             });
     }
+    /** returns boolean indicating whether grid is full or not */
+    public isGridFull() {
+        if (this.player1.noOfMoves + this.player2.noOfMoves < this.maxNoOfMoves) {
+            return false;
+        }
+        return true;
+    }
+
     /** returns boolean indicating whether an array of moves create a winning combo */
     public winningMoves(playerMoves: number[]) {
         const firstMove = playerMoves[0];
@@ -96,17 +104,5 @@ export class TicTacToeGame {
         return moves;
     }
 
-    /** returns boolean indicating whether grid is full or not */
-    private isGridFull() {
-        if (this.player1.noOfMoves + this.player2.noOfMoves < this.maxNoOfMoves) {
-            return false;
-        }
-        return true;
-    }
 
-    private winnerIs(player: User) {
-        const firstMove = player.showUserMoves[0];
-        const possibleSubsets = this.wins[firstMove];
-        return null;
-    }
 }

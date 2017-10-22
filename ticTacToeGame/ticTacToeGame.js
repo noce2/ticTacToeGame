@@ -62,6 +62,19 @@ class TicTacToeGame {
             }
         });
     }
+    /** returns boolean indicating whether grid is full or not */
+    isGridFull() {
+        if (this.player1.noOfMoves + this.player2.noOfMoves < this.maxNoOfMoves) {
+            return false;
+        }
+        return true;
+    }
+    /** returns boolean indicating whether an array of moves create a winning combo */
+    winningMoves(playerMoves) {
+        const firstMove = playerMoves[0];
+        const possibleSubsets = this.wins[firstMove];
+        return false;
+    }
     /** generic factory for a question and response callback  */
     sendQuestion(inputQuestion, filterLogic) {
         // wrapping the readline interface and question method in a promise
@@ -83,18 +96,6 @@ class TicTacToeGame {
             moves[each - 1] = each;
         }
         return moves;
-    }
-    /** returns boolean indicating whether grid is full or not */
-    isGridFull() {
-        if (this.player1.noOfMoves + this.player2.noOfMoves < this.maxNoOfMoves) {
-            return false;
-        }
-        return true;
-    }
-    winnerIs(player) {
-        const firstMove = player.showUserMoves[0];
-        const possibleSubsets = this.wins[firstMove];
-        return null;
     }
 }
 exports.TicTacToeGame = TicTacToeGame;
