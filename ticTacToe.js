@@ -3,30 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // tslint:disable:no-console
 const readline = require("readline");
 /** Class defining the user and their abilities */
-class User {
-    constructor(characterType) {
-        this.userCharacterType = characterType.toUpperCase();
-        this.storedUserMoves = new Set();
-    }
-    get characterType() {
-        return this.userCharacterType;
-    }
-    showUserMoves() {
-        return this.storedUserMoves.values();
-    }
-    /** stores the user move in their model and returns boolean to indicate success. */
-    addUserMove(input) {
-        const previousSize = this.storedUserMoves.size;
-        this.storedUserMoves.add(Number(input));
-        if (this.storedUserMoves.size > previousSize) {
-            return true;
-        }
-        return false;
-    }
-    get noOfMoves() {
-        return this.storedUserMoves.size;
-    }
-}
+const user_1 = require("./user/user");
 // tslint:disable-next-line:max-classes-per-file
 /** model of TicTacToeGame */
 class TicTacToeGame {
@@ -70,12 +47,12 @@ class TicTacToeGame {
                 case "o":
                 case "O":
                 case "X":
-                    this.player1 = new User(answer.toUpperCase());
+                    this.player1 = new user_1.User(answer.toUpperCase());
                     if (this.player1.characterType === "X") {
-                        this.player2 = new User("O");
+                        this.player2 = new user_1.User("O");
                     }
                     else {
-                        this.player2 = new User("X");
+                        this.player2 = new user_1.User("X");
                     }
                     console.log(`Player 1 is ${this.player1.characterType}\
                         \nPlayer 2 (computer) is ${this.player2.characterType}\n
