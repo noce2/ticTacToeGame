@@ -64,6 +64,12 @@ export class TicTacToeGame {
                 }
             });
     }
+    /** returns boolean indicating whether an array of moves create a winning combo */
+    public winningMoves(playerMoves: number[]) {
+        const firstMove = playerMoves[0];
+        const possibleSubsets = this.wins[firstMove];
+        return false;
+    }
 
     /** generic factory for a question and response callback  */
     private sendQuestion(inputQuestion: string, filterLogic: (answer: string) => void) {
